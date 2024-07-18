@@ -1,8 +1,6 @@
 package com.board.mine.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.board.mine.entity.BoardEntity;
 import com.board.mine.entity.CommentEntity;
@@ -17,37 +15,31 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class BoardDto {
+public class CommentDto {
+	
     private Long id;
     private String writer;
-    private String title;
     private String content;
+    private Long boardId;
     private LocalDateTime createdDate;
-    private LocalDateTime updateDate;
-    private List<CommentDto> comments;
-
-    public BoardEntity toEntity(){
-        BoardEntity boardEntity = BoardEntity.builder()
+    
+    public CommentEntity toEntity(){
+    	CommentEntity boardEntity = CommentEntity.builder()
                 .id(id)
                 .writer(writer)
-                .title(title)
                 .contents(content)
                 .build();
         return boardEntity;
     }
 
     @Builder
-    public BoardDto(Long id, String title, String content, String writer, LocalDateTime createdDate, LocalDateTime updateDate,List<CommentDto> comments ) {
+    public CommentDto(Long id, String title, String content, String writer, LocalDateTime createdDate, Long boardId) {
         this.id = id;
         this.writer = writer;
-        this.title = title;
         this.content = content;
         this.createdDate = createdDate;
-        this.updateDate = updateDate;
-        this.comments = comments;
+        this.boardId = boardId;
+
     }
-    
-    public void addComment(CommentDto comment) {
-    	this.comments.add(comment);
-    }
+
 }

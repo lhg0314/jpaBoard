@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.board.mine.entity.BoardEntity;
+import com.board.mine.entity.CommentEntity;
 
-public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
-	
-	 @Query("select be from BoardEntity be where be.writer= :writer and be.id = :id")
-	    List<BoardEntity> findwriter(@Param("writer") String writer, @Param("id") long id);
+public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
+	List<CommentEntity> findByBoard(BoardEntity board);
 }
